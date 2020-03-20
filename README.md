@@ -1,5 +1,10 @@
 # rails-template
 
+## Requiements
+- MySQL
+- ruby 2.7.x
+- Rails 6.0.x
+
 ## Usage
 To generate a Rails application using this template, pass the `-m` option to `rails new`, like this:
 
