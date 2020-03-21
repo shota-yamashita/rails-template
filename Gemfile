@@ -8,6 +8,7 @@ ruby '~> 2.7'
 gem 'rails', '~> 6.0'
 
 gem 'bootsnap', require: false
+gem "haml-rails"
 gem 'mysql2'
 gem 'pagy'
 gem 'puma'
@@ -23,6 +24,7 @@ group :development, :test do
   gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'haml_lint', require: false
   gem 'rspec-rails'
   gem 'rubocop', '~> 0.80.1', require: false
   gem 'rubocop-performance', require: false
