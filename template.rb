@@ -2,8 +2,19 @@ def apply_template!
   template 'Gemfile', force: true
 
   after_bundle do
+    set_database_password_and_db_create
     git_commit
   end
+end
+
+def set_database_password_and_db_create
+  inside 'config' do
+    #TODO: Don't set password of development, test environment.
+    mysql_password = ask("What database password?")
+    gsub_file "database.yml", /password:/, "password: #{mysql_password}"
+  end
+
+  rails_command("db:create")
 end
 
 def git_commit
