@@ -8,7 +8,7 @@ ruby '~> 2.7'
 gem 'rails', '~> 6.0'
 
 gem 'bootsnap', require: false
-gem "haml-rails"
+gem 'haml-rails'
 gem 'mysql2'
 gem 'pagy'
 gem 'puma'
