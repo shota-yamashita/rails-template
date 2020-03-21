@@ -1,0 +1,14 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - bin/**/*
+    - config/**/*
+    - db/schema.rb
+    - db/migrate/*
+    - node_modules/**/*
+    - vendor/**/*
+  TargetRubyVersion: 2.7

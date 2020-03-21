@@ -1,6 +1,6 @@
 # rails-template
 
-## Requiements
+## Requirements
 - MySQL
 - ruby 2.7.x
 - Rails 6.0.x

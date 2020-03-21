@@ -6,6 +6,7 @@ def apply_template!
   remove_unuse_files
 
   apply 'spec/template.rb'
+  template 'rubocop.yml'
 
   after_bundle do
     set_database_password_and_db_create

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -6,10 +8,10 @@ ruby '~> 2.7'
 gem 'rails', '~> 6.0'
 
 gem 'bootsnap', require: false
-gem 'pagy'
 gem 'mysql2'
+gem 'pagy'
 gem 'puma'
-gem "redis"
+gem 'redis'
 gem 'sass-rails'
 gem 'seed-fu'
 gem 'sidekiq'
@@ -20,8 +22,12 @@ group :development, :test do
   gem 'brakeman'
   gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'rubocop', '~> 0.80.1', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :development do
