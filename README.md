@@ -13,8 +13,9 @@ rails new rails-app \
   -m https://raw.githubusercontent.com/shota-yamashita/rails-template/master/template.rb -d mysql
 ```
 
-or execute local file
+or execute local file (before clone repository)
 
 ```
-rails new rails-app -m rails-template/template.rb -d mysql
+rails new rails-app \
+  -m rails-template/template.rb -d mysql
 ```
