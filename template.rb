@@ -2,7 +2,6 @@ def apply_template!
   setup_source_paths
 
   template 'Gemfile', force: true
-  apply '.rspec'
 
   remove_unuse_files
 
