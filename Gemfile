@@ -9,6 +9,7 @@ gem 'bootsnap', require: false
 gem 'pagy'
 gem 'mysql2'
 gem 'puma'
+gem "redis"
 gem 'sass-rails'
 gem 'seed-fu'
 gem 'sidekiq'
@@ -16,12 +17,17 @@ gem 'sprockets'
 gem 'webpacker'
 
 group :development, :test do
+  gem 'brakeman'
+  gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
 end
 
 group :development do
+  gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen'
