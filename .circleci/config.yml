@@ -1,0 +1,39 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@0.2.1 # Ruby orb registry: https://circleci.com/orbs/registry/orb/circleci/ruby
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.0-node-browsers
+        environment:
+          DB_HOST: 127.0.0.1
+          DB_PASSWORD: ''
+          RAILS_ENV: test
+          TZ: Asia/Tokyo
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/load-cache
+      - ruby/save-cache
+      - run:
+          name: waits for db
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:migrate
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+      - run:
+          name: haml-lint
+          command:
+            bundle exec haml-lint app/views
+      - ruby/run-tests
+      - ruby/save-cache
