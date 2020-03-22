@@ -31,10 +31,9 @@ end
 def set_database_password_and_db_create
   inside 'config' do
     mysql_password = ask('What database password?')
-    gsub_file 'database.yml', /host:/, "host: <%= ENV['DB_HOST'] || 'localhost' %>"
     gsub_file 'database.yml', /password:/, "password: <%= ENV['DB_PASSWORD'] || '#{mysql_password}' %>"
+    inject_into_file 'database.yml', "\n  host: <%= ENV['DB_HOST'] || 'localhost' %>", after: '  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>'
   end
-
   rails_command("db:create")
 end
 
