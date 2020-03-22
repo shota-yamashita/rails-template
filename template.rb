@@ -1,17 +1,22 @@
 def apply_template!
   add_template_repository_to_source_path
 
-  template 'Gemfile', force: true
-
   remove_unuse_files
-
-  apply 'spec/template.rb'
-  template '.rubocop.yml'
+  create_and_apply_files
 
   after_bundle do
     set_database_password_and_db_create
     git_commit
   end
+end
+
+def create_and_apply_files
+  template 'Gemfile', force: true
+  template '.rubocop.yml'
+
+  apply 'spec/template.rb'
+
+  copy_file '.circleci/config.yml'
 end
 
 def remove_unuse_files
@@ -25,9 +30,9 @@ end
 
 def set_database_password_and_db_create
   inside 'config' do
-    # TODO: Don't set password of production environment.
-    mysql_password = ask("What database password?")
-    gsub_file "database.yml", /password:/, "password: #{mysql_password}"
+    mysql_password = ask('What database password?')
+    gsub_file 'database.yml', /host:/, "host: <%= ENV['DB_HOST'] || 'localhost' %>"
+    gsub_file 'database.yml', /password:/, "password: <%= ENV['DB_PASSWORD'] || '#{mysql_password}' %>"
   end
 
   rails_command("db:create")
@@ -37,12 +42,12 @@ def git_commit
   return unless yes? 'git commit? [y/n]'
 
   git :init
-  git add: "."
+  git add: '.'
   git commit: %Q{ -m 'Initial commit' }
 end
 
-require "fileutils"
-require "shellwords"
+require 'fileutils'
+require 'shellwords'
 
 # Add this template directory to source_paths so that Thor actions like
 # copy_file and template resolve against our source files. If this file was
