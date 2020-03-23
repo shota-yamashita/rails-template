@@ -12,6 +12,7 @@ end
 
 def create_and_apply_files
   template 'Gemfile', force: true
+  template '.haml-lint.yml'
   template '.rubocop.yml'
 
   apply 'spec/template.rb'
