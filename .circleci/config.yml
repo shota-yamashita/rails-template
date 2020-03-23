@@ -20,20 +20,14 @@ jobs:
 
     steps:
       - checkout
-      - ruby/install-deps
       - ruby/load-cache
-      - ruby/save-cache
+      - ruby/install-deps
       - run:
           name: waits for db
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
-      - run:
-          name: haml-lint
-          command:
-            bundle exec haml-lint app/views
+      - run: bundle exec rubocop
+      - run: bundle exec haml-lint app/views
       - ruby/run-tests
       - ruby/save-cache
