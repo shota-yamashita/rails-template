@@ -27,7 +27,10 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
-      - run: bundle exec rubocop
-      - run: bundle exec haml-lint app/views
+
+      # optional settings
+      # - run: bundle exec rubocop
+      # - run: bundle exec haml-lint app/views
+      # - run: scss-lint app/assets/stylesheets/
       - ruby/run-tests
       - ruby/save-cache
