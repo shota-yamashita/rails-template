@@ -53,4 +53,4 @@ rails new rails-sample-app \
 * scss_lint (optional)
 
 ※ Default CircleCI setting, Not run Linter commands. 
-If use, please comment out the specify code. (.ciecleci/config.yml)
+If use linter commands, please uncomment the specify code. (in .ciecleci/config.yml)
