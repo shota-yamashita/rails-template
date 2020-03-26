@@ -52,5 +52,5 @@ rails new rails-sample-app \
 * rubocop (optional)
 * scss_lint (optional)
 
-※ Default CircleCI setting, Not run Linter commands. 
+※ Default CircleCI setting, Not run linter commands.  
 If use linter commands, please uncomment the specify code. (in .ciecleci/config.yml)
