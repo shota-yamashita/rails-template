@@ -32,7 +32,6 @@ rails new rails-sample-app \
 * [sidekiq][]
 
 #### Linter
-※ Not run default CircleCI setting. if you run, please comment out the code.
 * [haml_lint][]
 * [rubocop][]
 * [scss_lint][]
@@ -46,3 +45,12 @@ rails new rails-sample-app \
 [haml_lint]:https://github.com/sds/haml-lint
 [rubocop]:https://github.com/bbatsov/rubocop
 [scss_lint]:https://github.com/sds/scss-lint
+
+#### CircleCI
+* RSpec
+* haml_lint (optional)
+* rubocop (optional)
+* scss_lint (optional)
+
+※ Default CircleCI setting, Not run Linter commands. 
+If use, please comment out the specify code. (.ciecleci/config.yml)
